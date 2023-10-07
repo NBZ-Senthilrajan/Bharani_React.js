@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,10 +8,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-// Register Chart.js components
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import "./containers.scss";
+// Register Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,41 +27,62 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' ,
+      position: "top",
     },
-  
   },
   scales: {
     x: {
       grid: {
-        display: false,  
+        display: false,
+      },
+      ticks: {
+        color: "black",
+        borderWidth: 5,
       },
     },
     y: {
       grid: {
-        display: false,  
+        display: false,
+      },
+      ticks: {
+        color: "black",
+        borderWidth: 5,
+        stepSize: 1,
+        max: 5,
+        min: 1,
       },
     },
-}
-}
+  },
+};
+
 // Data for the chart
-const labels = ['2010', '2011', '2012', '2013', '2014', '2015', '2016'];
+const labels = ["2010", "2011", "2012", "2013", "2014", "2015", "2016"];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data:[9,7,6,5,4,2,1],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      pointRadius: 10,
+      label: "Dataset",
+      data: [5, , 4, , 3, 2, 1],
+      borderColor: "rgba(255, 99, 132, 0)",
+      borderWidth: 0,
+      backgroundColor: "#000",
+      pointRadius: 20,
     },
-   
   ],
 };
 
 function ChartComponent() {
-  return <Line options={options} data={data} />;
+  return (
+    <div className="container p-3">
+      <div className="card m-3 rounded-5">
+        <div className="card-body">
+          <div className="chart_container">
+            <Line options={options} data={data} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 export default ChartComponent;

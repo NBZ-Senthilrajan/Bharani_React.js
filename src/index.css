@@ -12,6 +12,9 @@ code {
     monospace;
 }
 .app{
-    background: linear-gradient(to bottom right, #f5a2e3, #fba3a7, #f786a1);
+    background: linear-gradient(120deg, #f5a2e3, #fba3a7, #f786a1);
   ;
+}
+.chart{
+  background: linear-gradient(5deg, #b1e0f6, #ebf8b7,#fa9da6);
 }
