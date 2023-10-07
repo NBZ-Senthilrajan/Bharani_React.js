@@ -1,11 +1,13 @@
 import React from "react";
 import "./containers.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedItem } from "../redux/slices/operations";
 
 const DashboardCards = (props) => {
   const { operations, dataLoaded } = useSelector(
     (state) => state.OperationState
   );
+  const dispatch=useDispatch();
 
   let months = [
     "January",
@@ -34,7 +36,7 @@ const DashboardCards = (props) => {
       {dataLoaded &&
         operations.map((item, index) => (
           <div className="col-xl-3 col-lg-4 col-md-6  p-2" key={index}>
-            <div className="card rounded-5 card-menu">
+            <div className="card rounded-5 card-menu" onClick={()=>{dispatch(setSelectedItem(item))}}>
               <div className="card-header border-0">
                 <h5 className="text-uppercase fw-bold">{item.header}</h5>
               </div>

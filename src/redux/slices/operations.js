@@ -7,8 +7,11 @@ const OperationSlice = createSlice({
     setOperations: (state, action) => {
       return { dataLoaded: true, operations: action.payload };
     },
+    setSelectedItem:(state,action)=>{
+      return {...state,isSelected:true,selectedItem:action.payload}
+    }
   },
 });
 const { actions, reducer } = OperationSlice;
-export const { setOperations } = actions;
+export const { setOperations,setSelectedItem } = actions;
 export default reducer;

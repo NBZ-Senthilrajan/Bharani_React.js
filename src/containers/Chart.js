@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import "./containers.scss";
+import { useDispatch, useSelector } from "react-redux";
 // Register Chart.js
 ChartJS.register(
   CategoryScale,
@@ -47,8 +48,8 @@ export const options = {
       ticks: {
         color: "black",
         borderWidth: 5,
-        stepSize: 1,
-        max: 5,
+        stepSize: 2,
+        max: 12,
         min: 1,
       },
     },
@@ -56,7 +57,7 @@ export const options = {
 };
 
 // Data for the chart
-const labels = ["2010", "2011", "2012", "2013", "2014", "2015", "2016"];
+const labels = ["2010", "2011", "2012", "2013", "2014", "2015", "2016","2017","2018"];
 
 export const data = {
   labels,
@@ -72,17 +73,23 @@ export const data = {
   ],
 };
 
-function ChartComponent() {
+const ChartComponent = () => {
+  const { selectedItem ,isSelected} = useSelector((state) => state.OperationState);
+  const dispatch = useDispatch();
   return (
     <div className="container p-3">
       <div className="card m-3 rounded-5">
         <div className="card-body">
-          <div className="chart_container">
+          <div className="chart_container d-flex">
             <Line options={options} data={data} />
+            {isSelected&&<div>
+              <h2>{selectedItem.header}</h2>
+              <img src={selectedItem.icon} className="w-100" alt="operation icon"/>
+            </div>}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 export default ChartComponent;
